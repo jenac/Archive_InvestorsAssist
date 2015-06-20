@@ -23,12 +23,10 @@ namespace InvestorsAssist.Configuration
 
         private SystemSettings()
         {
-            //Key from one drive
-            string keyFile = Path.Combine(FileSystem.GetOneDriveFolder(), "InvestorAssist.key");
+            string keyFile = Path.Combine(FileSystem.GetSettingsFolder(), "InvestorAssist.key");
             _passKey = File.ReadAllText(keyFile).ToSecureString();
 
-            //Setting from google drive
-            string emailFile = Path.Combine(FileSystem.GetGoogleDriveFolder(), "Email.xml");
+            string emailFile = Path.Combine(FileSystem.GetSettingsFolder(), "Email.xml");
             string emailXml = File.ReadAllText(emailFile);
             this.EmailSetting = Serializer.DeserializeFromXml<Email>(emailXml);
             this.EmailSetting.SecurePassword = Encryption.Decrypt(
@@ -37,7 +35,7 @@ namespace InvestorsAssist.Configuration
                 ).ToSecureString();
             this.EmailSetting.Password = string.Empty;
 
-            string ibdFile = Path.Combine(FileSystem.GetGoogleDriveFolder(), "Ibd.xml");
+            string ibdFile = Path.Combine(FileSystem.GetSettingsFolder(), "Ibd.xml");
             string ibdXml = File.ReadAllText(ibdFile);
             this.IbdSetting = Serializer.DeserializeFromXml<Ibd>(ibdXml);
             this.IbdSetting.SecurePassword = Encryption.Decrypt(

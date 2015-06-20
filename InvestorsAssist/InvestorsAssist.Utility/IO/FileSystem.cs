@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,6 +49,21 @@ namespace InvestorsAssist.Utility.IO
             return Path.Combine(GetProfileFolder(), "Temp");
         }
 
+        public static string GetSettingsFolder()
+        {
+#if DEBUG
+            return @"C:\LHM\Settings\InvestorsAssist"
+#else
+            string codeBase = Assembly.GetExecutingAssembly().CodeBase;
+            UriBuilder uri = new UriBuilder(codeBase);
+            string path = Uri.UnescapeDataString(uri.Path);
+            return Path.Combine(Directory.GetParent(Path.GetDirectoryName(path)).FullName,
+                "Settings", "InvestorsAssist");
+#endif
+
+
+
+        }
         private static string GetProfileFolder()
         {
             string value = Environment.GetEnvironmentVariable("ALLUSERSPROFILE");

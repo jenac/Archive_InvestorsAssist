@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using InvestorsAssist.Utility.Security;
 using InvestorsAssist.Entities;
 using HtmlAgilityPack;
+using System.Threading;
 
 namespace InvestorsAssist.Core
 {
@@ -26,18 +27,24 @@ namespace InvestorsAssist.Core
             List<Stock> value = new List<Stock>();
             for (int i = 0; i < SystemSettings.Instance.IbdSetting.MaxRetries; i++)
             {
+                if (i!=0)
+                {
+                    //Sleep before retry.
+                    Thread.Sleep(1000 * SystemSettings.Instance.IbdSetting.RetryInterval);
+                }
                 try
                 {
                     var text = DownloadIbd50AsText();
                     if (string.IsNullOrEmpty(text))
                         continue;
+                    return IbdTextParser.Parse(text);
                 }
                 catch (Exception ex)
                 {
-                    //log
+                    Logger.Instance.WarnFormat("Download Ibd 50 fail @{0}: {1}", i, ex.Message);
+                    Logger.Instance.Warn(ex.StackTrace);
                     continue;
                 }
-                
             }
             return value;
         }
@@ -66,7 +73,7 @@ namespace InvestorsAssist.Core
             dynamic loginReturn = Serializer.DeserializeFromJson<dynamic>(response);
             if (loginReturn.d.ToString() != "SOK")
             {
-                //log
+                Logger.Instance.ErrorFormat("Fail to login investors.com. Server says {0}", response);
                 return string.Empty;
             }
 

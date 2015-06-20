@@ -11,6 +11,7 @@ namespace InvestorsAssist.Core.Test
         {
             var reader = new IbdReader();
             var ret = reader.DownloadIbd50List();
+            Assert.IsTrue(ret.Count == 50);
         }
     }
 }
