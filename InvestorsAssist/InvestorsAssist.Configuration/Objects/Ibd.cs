@@ -15,7 +15,7 @@ namespace InvestorsAssist.Configuration.Objects
         [XmlIgnore]
         public SecureString SecurePassword { get; set; }
         public string Password { get; set; }
-
         public int MaxRetries { get; set; }
+        public int RetryInterval { get; set; } //in seconds
     }
 }

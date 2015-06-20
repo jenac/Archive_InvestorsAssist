@@ -7,7 +7,7 @@ namespace InvestorsAssist.Configuration.Test
     public class SystemSettingsTest
     {
         [TestMethod]
-        public void SystemSettingsTest_should_initalize()
+        public void SystemSettingsTest_Should_Initalize()
         {
             var setting = SystemSettings.Instance;
             Assert.IsTrue(setting.IbdSetting != null);

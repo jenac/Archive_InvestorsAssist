@@ -17,7 +17,7 @@ namespace InvestorsAssist.Utility.Internet
             _cookieContainer = new CookieContainer();
         }
 
-        public string DownloadString(string url, Dictionary<string, string> headers, string data = null)
+        public string DownloadString(string url, Dictionary<string, string> headers = null, string data = null)
         {
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
 
