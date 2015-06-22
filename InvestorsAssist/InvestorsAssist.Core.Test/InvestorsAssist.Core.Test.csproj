@@ -50,9 +50,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="IbdReaderTest.cs" />
+    <Compile Include="Ibd_ReaderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IbdTextParserTest.cs" />
+    <Compile Include="Ibd_TextParserTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InvestorsAssist.Core\InvestorsAssist.Core.csproj">

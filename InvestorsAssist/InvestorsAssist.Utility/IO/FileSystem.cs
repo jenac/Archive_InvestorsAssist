@@ -52,7 +52,7 @@ namespace InvestorsAssist.Utility.IO
         public static string GetSettingsFolder()
         {
 #if DEBUG
-            return @"C:\LHM\Settings\InvestorsAssist"
+            return @"C:\LHM\Settings\InvestorsAssist";
 #else
             string codeBase = Assembly.GetExecutingAssembly().CodeBase;
             UriBuilder uri = new UriBuilder(codeBase);

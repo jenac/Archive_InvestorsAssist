@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
@@ -38,6 +44,7 @@
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,14 +53,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IbdReader.cs" />
-    <Compile Include="IbdTextParser.cs" />
+    <Compile Include="Ibd\Reader.cs" />
+    <Compile Include="Ibd\TextParser.cs" />
+    <Compile Include="Ibd\UpdatesWorker.cs" />
+    <Compile Include="IWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InvestorsAssist.Configuration\InvestorsAssist.Configuration.csproj">
       <Project>{71842be3-4e6b-4413-ab52-39070d332001}</Project>
       <Name>InvestorsAssist.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InvestorsAssist.DataAccess\InvestorsAssist.DataAccess.csproj">
+      <Project>{573d2ac0-0725-442c-810b-0024e4181011}</Project>
+      <Name>InvestorsAssist.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\InvestorsAssist.Entities\InvestorsAssist.Entities.csproj">
       <Project>{d6746dc5-f71d-476d-8c9e-7d35f6423a36}</Project>
@@ -65,7 +78,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Ta\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

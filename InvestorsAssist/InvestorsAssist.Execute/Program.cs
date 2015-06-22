@@ -1,4 +1,5 @@
 ﻿using InvestorsAssist.Core;
+using InvestorsAssist.Core.Ibd;
 using InvestorsAssist.DataAccess;
 using InvestorsAssist.Utility.IO;
 using System;
@@ -18,18 +19,19 @@ namespace InvestorsAssist.Execute
             {
                 using (var context = new DataContext("InvestorsAssist"))
                 {
-                    var reader = new IbdReader();
-                    var stocks = reader.DownloadIbd50List();
-                    Logger.Instance.InfoFormat("{0} stocks downloaded from investors.com", stocks.Count);
-                    foreach (var stock in stocks)
+                    List<IWorker> workers = new List<IWorker> {
+                        new UpdatesWorker(context)
+                    };
+                    foreach (var worker in workers)
                     {
-                        context.SaveStock(stock);
+                        Logger.Instance.InfoFormat("Worker '{0}' is on duty", worker.Name);
+                        worker.DoWork();
                     }
                 }
             }
             catch (Exception ex)
             {
-                Logger.Instance.InfoFormat("Exception while downloading stocksfrom investors.com", ex.Message);
+                Logger.Instance.InfoFormat("Exception: {0}", ex.Message);
                 Logger.Instance.Info(ex.StackTrace);
             }
             Logger.Instance.Info("InvestorsAssist.Execute done.");

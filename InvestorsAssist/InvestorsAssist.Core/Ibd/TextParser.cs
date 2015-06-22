@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InvestorsAssist.Core
+namespace InvestorsAssist.Core.Ibd
 {
-    public static class IbdTextParser
+    public static class TextParser
     {
         public static List<Stock> Parse(string text)
         {

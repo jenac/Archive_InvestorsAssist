@@ -11,14 +11,14 @@ using InvestorsAssist.Entities;
 using HtmlAgilityPack;
 using System.Threading;
 
-namespace InvestorsAssist.Core
+namespace InvestorsAssist.Core.Ibd
 {
-    public class IbdReader
+    public class Reader
     {
 
         private readonly CookieAwareHttpClient _client;
 
-        public IbdReader()
+        public Reader()
         {
             _client = new CookieAwareHttpClient();
         }
@@ -37,7 +37,7 @@ namespace InvestorsAssist.Core
                     var text = DownloadIbd50AsText();
                     if (string.IsNullOrEmpty(text))
                         continue;
-                    return IbdTextParser.Parse(text);
+                    return TextParser.Parse(text);
                 }
                 catch (Exception ex)
                 {

@@ -1,32 +1,33 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using InvestorsAssist.Core.Ibd;
 
 namespace InvestorsAssist.Core.Test
 {
     [TestClass]
-    public class IbdTextParserTest
+    public class Ibd_TextParserTest
     {
         [TestMethod]
-        public void IbdTextParser_ParseDateLine_ShouldParseCorrectLine()
+        public void Ibd_TextParser_ParseDateLine_ShouldParseCorrectLine()
         {
             const string line = @"Screen results as of 9:55 PM Eastern, Thursday, June 04, 2015";
-            DateTime? value = IbdTextParser.ParseDateLine(line);
+            DateTime? value = TextParser.ParseDateLine(line);
             Assert.IsTrue(value != null);
             Assert.IsTrue(value.Value == new DateTime(2015, 6, 4));
         }
 
         [TestMethod]
-        public void IbdTextParser_ParseStockLine_ShouldParseCorrectLine()
+        public void Ibd_TextParser_ParseStockLine_ShouldParseCorrectLine()
         {
             const string guide = @"------     ------------------------     -----------     -------------     ------------     --------------     ----------     ------------     ------------     ----------------     ----------     ---------     ----------     --------------     --------------------     --------------------     --------------------     ---------------------------     --------------------------     ----------------------     ----------------------     --------------------------------     ----------     --------------------------     ";
             const string line = @"AMCX       Amc Networks Inc             38              79.6000           0.8900           1.13               -2.99          369.1            46               89                   99             84            N/A            B-                 A-                       69                       125                      0                               21                             27                         N/A                        19.7                                 2              1                              ";
-            var value = IbdTextParser.ParseStockLine(guide, line);
+            var value = TextParser.ParseStockLine(guide, line);
             Assert.IsTrue(value != null);
         }
         [TestMethod]
-        public void IbdTextParser_Parse_Should_ParseCorrectText()
+        public void Ibd_TextParser_Parse_Should_ParseCorrectText()
         {
-            var stocks = IbdTextParser.Parse(_correctText);
+            var stocks = TextParser.Parse(_correctText);
             Assert.IsTrue(stocks.Count == 50);
         }
 
