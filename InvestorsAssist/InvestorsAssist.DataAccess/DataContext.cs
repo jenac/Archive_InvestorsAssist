@@ -29,8 +29,8 @@ namespace InvestorsAssist.DataAccess
 
         public void SaveStock(Stock value)
         {
-            this.Database.ExecuteSqlCommand("EXEC Proc_Stock_Upsert {0}, {1}, {2}, {3}",
-                value.Symbol, value.Date, value.Ibd50Rank, value.Data);
+            this.Database.ExecuteSqlCommand("EXEC Proc_Stock_Upsert {0}, {1}, {2}, {3}, {4}",
+                value.Symbol, value.Date, value.Ibd50Rank, value.Data, value.Following);
         }
 
         public DateTime? GetStockLastUpdate()

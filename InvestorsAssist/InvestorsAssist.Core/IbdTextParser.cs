@@ -95,7 +95,8 @@ namespace InvestorsAssist.Core
             {
                 Data = Serializer.SerializeToJson<IbdData>(data),
                 Ibd50Rank = int.Parse(data.Ibd50Rank),
-                Symbol = data.Symbol
+                Symbol = data.Symbol,
+                Following = true
             };
         }
     }
