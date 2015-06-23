@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Stock](
 	[Symbol] [nvarchar](16) NOT NULL,
 	[Date] [datetime] NOT NULL,
-	[Ibd50Rank] [int] NOT NULL,
+	[Ibd50Rank] [int] NULL,
 	[Data] [text] NULL,
 	[Following] [bit] NOT NULL,
 PRIMARY KEY CLUSTERED 
@@ -38,3 +38,36 @@ BEGIN
 		VALUES (@Symbol, @Date, @Ibd50Rank, @Data, @Following)
 	END;
 END;
+GO
+
+CREATE PROCEDURE [dbo].[Proc_Stock_Following_Get] 
+AS 
+BEGIN
+	SELECT DISTINCT([Symbol]) FROM [Stock] WHERE [Following] = 1
+END;
+GO
+
+CREATE PROCEDURE [dbo].[Proc_Stock_Last2_Dates_Get] 
+AS 
+BEGIN
+	WITH CTE ([Date]) AS (
+	SELECT DISTINCT([Date]) 
+		FROM [Stock] 
+		WHERE [Ibd50Rank] IS NOT NULL 
+		)
+	SELECT TOP 2 [Date] FROM CTE ORDER BY [Date] DESC
+END;
+GO
+
+CREATE PROCEDURE [dbo].[Proc_Stock_Ibd50_Symbol_By_Date_Get] 
+(
+	@Date DATETIME
+)
+AS 
+BEGIN
+	SELECT [Symbol] 
+		FROM [Stock] 
+		WHERE [Ibd50Rank] IS NOT NULL 
+			AND [Date] = @Date
+END;
+GO

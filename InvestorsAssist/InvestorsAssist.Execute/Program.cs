@@ -1,5 +1,6 @@
 ﻿using InvestorsAssist.Core;
 using InvestorsAssist.Core.Ibd;
+using InvestorsAssist.Core.Ta;
 using InvestorsAssist.DataAccess;
 using InvestorsAssist.Utility.IO;
 using System;
@@ -20,7 +21,8 @@ namespace InvestorsAssist.Execute
                 using (var context = new DataContext("InvestorsAssist"))
                 {
                     List<IWorker> workers = new List<IWorker> {
-                        new UpdatesWorker(context)
+                        new UpdatesWorker(context),
+                        new AnalyseWorker(context),
                     };
                     foreach (var worker in workers)
                     {

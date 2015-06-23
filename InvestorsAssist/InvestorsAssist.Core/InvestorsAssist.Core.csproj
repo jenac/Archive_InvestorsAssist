@@ -46,6 +46,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,8 +59,18 @@
     <Compile Include="Ibd\UpdatesWorker.cs" />
     <Compile Include="IWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ta\AnalyseWorker.cs" />
+    <Compile Include="Ta\DailySummary.cs" />
+    <Compile Include="Ta\PriceData.cs" />
+    <Compile Include="Ta\PriceReader.cs" />
+    <Compile Include="Ta\StockSummuary.cs" />
+    <Compile Include="Ta\TaExtension.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\InvestorsAssist.Algorithm\InvestorsAssist.Algorithm.csproj">
+      <Project>{d6d302a3-579f-47e2-98d0-bb36d6a68853}</Project>
+      <Name>InvestorsAssist.Algorithm</Name>
+    </ProjectReference>
     <ProjectReference Include="..\InvestorsAssist.Configuration\InvestorsAssist.Configuration.csproj">
       <Project>{71842be3-4e6b-4413-ab52-39070d332001}</Project>
       <Name>InvestorsAssist.Configuration</Name>
@@ -81,9 +92,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Ta\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

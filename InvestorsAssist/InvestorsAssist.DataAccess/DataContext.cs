@@ -37,6 +37,22 @@ namespace InvestorsAssist.DataAccess
         {
             return this._objectCtx.ExecuteStoreQuery<DateTime>("EXEC Proc_Stock_LastUpdate_Get").FirstOrDefault();
         }
-        
+
+        public IEnumerable<string> GetFollowingList()
+        {
+            return this._objectCtx.ExecuteStoreQuery<string>("EXEC Proc_Stock_Following_Get");
+            
+        }
+
+        public IEnumerable<DateTime> GetLast2IbdDate()
+        {
+            return this._objectCtx.ExecuteStoreQuery<DateTime>("EXEC Proc_Stock_Last2_Dates_Get");
+        }
+
+
+        public IEnumerable<string> GetIbd50ByDate(DateTime latest)
+        {
+            return this._objectCtx.ExecuteStoreQuery<string>("EXEC Proc_Stock_Ibd50_Symbol_By_Date_Get {0}", latest);
+        }
     }
 }
