@@ -5,7 +5,7 @@
     DefaultTargets="Build">
 
     <PropertyGroup>
-        <OutputDir>Z:\Downloads</OutputDir>
+        <OutputDir>C:\LHM\InvestorsAssist</OutputDir>
     </PropertyGroup>
 
     <ItemGroup>
@@ -17,5 +17,4 @@
     <Target Name="Build">
         <MSBuild Projects="@(ProjectToBuild)"/>
     </Target>
-
 </Project>
