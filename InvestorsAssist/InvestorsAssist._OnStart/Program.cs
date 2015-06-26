@@ -29,8 +29,8 @@ namespace InvestorsAssist._OnStart
                     SystemSettings.Instance.EmailSetting.Username,
                     SystemSettings.Instance.EmailSetting.SecurePassword.ToPlainString()))
                     {
-                        email.SendHtmlEmail("lihe.chen@gmail.com",
-                            new List<string> {"10327187@qq.com"},
+                        email.SendHtmlEmail(SystemSettings.Instance.EmailSetting.To,
+                            SystemSettings.Instance.EmailSetting.Cc, 
                             string.Format("IA: Computer {0} started @ {1}",
                                 Environment.MachineName, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")),
                             string.Format("IP: <b>{0}</b>", GetInternetIP()));

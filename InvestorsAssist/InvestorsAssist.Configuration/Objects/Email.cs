@@ -17,5 +17,9 @@ namespace InvestorsAssist.Configuration.Objects
         [XmlIgnore]
         public SecureString SecurePassword { get; set; }
         public string Password { get; set; }
+
+        public string To { get; set; }
+
+        public List<string> Cc { get; set; }
     }
 }

@@ -92,7 +92,10 @@ namespace InvestorsAssist.Core.Ta
                 SystemSettings.Instance.EmailSetting.Username,
                 SystemSettings.Instance.EmailSetting.SecurePassword.ToPlainString()))
             {
-                email.SendHtmlEmail("lihe.chen@gmail.com", new List<string>(), "IA: Daily Summary", summary.ToHtmlPresentation());
+                email.SendHtmlEmail(SystemSettings.Instance.EmailSetting.To, 
+                    SystemSettings.Instance.EmailSetting.Cc, 
+                    "IA: Daily Summary", 
+                    summary.ToHtmlPresentation());
             }
             //Load template and create/send email
             //Logger.Instance.Info()
