@@ -10,7 +10,7 @@ namespace InvestorsAssist.Core.Ibd
 {
     public static class TextParser
     {
-        public static List<Stock> Parse(string text)
+        public static List<IbdPick> Parse(string text)
         {
             string[] lines = text.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
             int index = Array.FindIndex(lines, l => l.StartsWith("------"));
@@ -22,10 +22,10 @@ namespace InvestorsAssist.Core.Ibd
                 return null;
             }
             string guideLine = lines.Skip(index).Take(1).First();
-            List<string> stockLines = lines.Skip(index+1).Take(50).ToList();
-            var stocks = stockLines.Select(s => ParseStockLine(guideLine, s)).ToList();
-            stocks.ForEach(s => s.Date = date.Value);
-            return stocks;
+            List<string> ibdPickLines = lines.Skip(index+1).Take(50).ToList();
+            var ibdPicks = ibdPickLines.Select(s => ParseIbdPickLine(guideLine, s)).ToList();
+            ibdPicks.ForEach(s => s.Date = date.Value);
+            return ibdPicks;
 
         }
 
@@ -44,7 +44,7 @@ namespace InvestorsAssist.Core.Ibd
             }
         }
 
-        internal static Stock ParseStockLine(string guidLine, string stockLine)
+        internal static IbdPick ParseIbdPickLine(string guidLine, string ibdPickLine)
         {
             List<Tuple<int, int>> marks = new List<Tuple<int, int>>();
             
@@ -61,7 +61,7 @@ namespace InvestorsAssist.Core.Ibd
                 }
             }
 
-            string [] sa = marks.Select(m => stockLine.Substring(m.Item1, m.Item2).Trim()).ToArray();
+            string [] sa = marks.Select(m => ibdPickLine.Substring(m.Item1, m.Item2).Trim()).ToArray();
 
             IbdData data = new IbdData
             {
@@ -91,7 +91,7 @@ namespace InvestorsAssist.Core.Ibd
                 QtrsofRisingSponsorship = sa[23],
             };
 
-            return new Stock
+            return new IbdPick
             {
                 Data = Serializer.SerializeToJson<IbdData>(data),
                 Ibd50Rank = int.Parse(data.Ibd50Rank),

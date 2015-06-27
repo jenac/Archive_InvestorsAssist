@@ -17,18 +17,18 @@ namespace InvestorsAssist.Core.Test
         }
 
         [TestMethod]
-        public void Ibd_TextParser_ParseStockLine_ShouldParseCorrectLine()
+        public void Ibd_TextParser_ParseIbdPickLine_ShouldParseCorrectLine()
         {
             const string guide = @"------     ------------------------     -----------     -------------     ------------     --------------     ----------     ------------     ------------     ----------------     ----------     ---------     ----------     --------------     --------------------     --------------------     --------------------     ---------------------------     --------------------------     ----------------------     ----------------------     --------------------------------     ----------     --------------------------     ";
             const string line = @"AMCX       Amc Networks Inc             38              79.6000           0.8900           1.13               -2.99          369.1            46               89                   99             84            N/A            B-                 A-                       69                       125                      0                               21                             27                         N/A                        19.7                                 2              1                              ";
-            var value = TextParser.ParseStockLine(guide, line);
+            var value = TextParser.ParseIbdPickLine(guide, line);
             Assert.IsTrue(value != null);
         }
         [TestMethod]
         public void Ibd_TextParser_Parse_Should_ParseCorrectText()
         {
-            var stocks = TextParser.Parse(_correctText);
-            Assert.IsTrue(stocks.Count == 50);
+            var idbPicks = TextParser.Parse(_correctText);
+            Assert.IsTrue(idbPicks.Count == 50);
         }
 
         

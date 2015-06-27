@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[Stock](
+﻿CREATE TABLE [dbo].[IbdPick](
 	[Symbol] [nvarchar](16) NOT NULL,
 	[Date] [datetime] NOT NULL,
 	[Ibd50Rank] [int] NULL,
@@ -13,11 +13,11 @@ PRIMARY KEY CLUSTERED
 
 GO
 
-ALTER TABLE [dbo].[Stock] ADD  CONSTRAINT [DF_Stock_Following]  DEFAULT ((1)) FOR [Following]
+ALTER TABLE [dbo].[IbdPick] ADD  CONSTRAINT [DF_IbdPick_Following]  DEFAULT ((1)) FOR [Following]
 GO
 
 
-CREATE PROCEDURE [dbo].[Proc_Stock_Upsert] 
+CREATE PROCEDURE [dbo].[Proc_IbdPick_Upsert] 
 (
 	@Symbol NVARCHAR(16)
 	, @Date DATETIME
@@ -27,47 +27,54 @@ CREATE PROCEDURE [dbo].[Proc_Stock_Upsert]
 )
 AS 
 BEGIN
-	UPDATE [Stock]
+	UPDATE [IbdPick]
 		SET [Ibd50Rank] = @Ibd50Rank,
 		[Data] = @Data,
 		[Following] = @Following
 		WHERE [Symbol] = @Symbol AND [Date] = @Date
 	IF @@ROWCOUNT = 0 
 	BEGIN
-		INSERT INTO [Stock] ([Symbol], [Date], [Ibd50Rank], [Data], [Following])
+		INSERT INTO [IbdPick] ([Symbol], [Date], [Ibd50Rank], [Data], [Following])
 		VALUES (@Symbol, @Date, @Ibd50Rank, @Data, @Following)
 	END;
 END;
 GO
 
-CREATE PROCEDURE [dbo].[Proc_Stock_Following_Get] 
+CREATE PROCEDURE [dbo].[Proc_IbdPick_Following_Get] 
 AS 
 BEGIN
-	SELECT DISTINCT([Symbol]) FROM [Stock] WHERE [Following] = 1
+	SELECT DISTINCT([Symbol]) FROM [IbdPick] WHERE [Following] = 1
 END;
 GO
 
-CREATE PROCEDURE [dbo].[Proc_Stock_Last2_Dates_Get] 
+CREATE PROCEDURE [dbo].[Proc_IbdPick_Last2_Dates_Get] 
 AS 
 BEGIN
 	WITH CTE ([Date]) AS (
 	SELECT DISTINCT([Date]) 
-		FROM [Stock] 
+		FROM [IbdPick] 
 		WHERE [Ibd50Rank] IS NOT NULL 
 		)
 	SELECT TOP 2 [Date] FROM CTE ORDER BY [Date] DESC
 END;
 GO
 
-CREATE PROCEDURE [dbo].[Proc_Stock_Ibd50_Symbol_By_Date_Get] 
+CREATE PROCEDURE [dbo].[Proc_IbdPick_Ibd50_Symbol_By_Date_Get] 
 (
 	@Date DATETIME
 )
 AS 
 BEGIN
 	SELECT [Symbol] 
-		FROM [Stock] 
+		FROM [IbdPick] 
 		WHERE [Ibd50Rank] IS NOT NULL 
 			AND [Date] = @Date
+END;
+GO
+
+CREATE PROCEDURE [dbo].[Proc_IbdPick_LastUpdate_Get] 
+AS 
+BEGIN
+	SELECT MAX([Date]) AS LastUpdate FROM [IbdPick]
 END;
 GO

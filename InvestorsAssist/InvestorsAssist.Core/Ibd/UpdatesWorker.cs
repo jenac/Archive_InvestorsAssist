@@ -19,11 +19,11 @@ namespace InvestorsAssist.Core.Ibd
         public void DoWork()
         {
             var reader = new Reader();
-            var stocks = reader.DownloadIbd50List();
-            Logger.Instance.InfoFormat("{0} stocks downloaded from investors.com", stocks.Count);
-            foreach (var stock in stocks)
+            var ibdPicks = reader.DownloadIbd50List();
+            Logger.Instance.InfoFormat("{0} picks downloaded from investors.com", ibdPicks.Count);
+            foreach (var ibdPick in ibdPicks)
             {
-                _context.SaveStock(stock);
+                _context.SaveIbdPick(ibdPick);
             }
         }
 

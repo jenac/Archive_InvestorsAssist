@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace InvestorsAssist.Entities
 {
-    public class Stock
+    public class IbdPick
     {
         public string Symbol { get; set; }
         public DateTime Date { get; set; }

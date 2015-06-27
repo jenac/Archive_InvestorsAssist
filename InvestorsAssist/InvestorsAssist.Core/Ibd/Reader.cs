@@ -22,9 +22,9 @@ namespace InvestorsAssist.Core.Ibd
         {
             _client = new CookieAwareHttpClient();
         }
-        public List<Stock> DownloadIbd50List()
+        public List<IbdPick> DownloadIbd50List()
         {
-            List<Stock> value = new List<Stock>();
+            List<IbdPick> value = new List<IbdPick>();
             for (int i = 0; i < SystemSettings.Instance.IbdSetting.MaxRetries; i++)
             {
                 if (i!=0)
