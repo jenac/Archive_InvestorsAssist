@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Company.cs" />
     <Compile Include="IbdData.cs" />
     <Compile Include="IbdPick.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

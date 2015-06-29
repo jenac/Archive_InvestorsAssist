@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using InvestorsAssist.Core.Ibd;
+using InvestorsAssist.Core;
 
 namespace InvestorsAssist.Core.Test
 {
@@ -11,7 +11,7 @@ namespace InvestorsAssist.Core.Test
         public void Ibd_TextParser_ParseDateLine_ShouldParseCorrectLine()
         {
             const string line = @"Screen results as of 9:55 PM Eastern, Thursday, June 04, 2015";
-            DateTime? value = TextParser.ParseDateLine(line);
+            DateTime? value = IbdParser.ParseDateLine(line);
             Assert.IsTrue(value != null);
             Assert.IsTrue(value.Value == new DateTime(2015, 6, 4));
         }
@@ -21,13 +21,13 @@ namespace InvestorsAssist.Core.Test
         {
             const string guide = @"------     ------------------------     -----------     -------------     ------------     --------------     ----------     ------------     ------------     ----------------     ----------     ---------     ----------     --------------     --------------------     --------------------     --------------------     ---------------------------     --------------------------     ----------------------     ----------------------     --------------------------------     ----------     --------------------------     ";
             const string line = @"AMCX       Amc Networks Inc             38              79.6000           0.8900           1.13               -2.99          369.1            46               89                   99             84            N/A            B-                 A-                       69                       125                      0                               21                             27                         N/A                        19.7                                 2              1                              ";
-            var value = TextParser.ParseIbdPickLine(guide, line);
+            var value = IbdParser.ParseIbdPickLine(guide, line);
             Assert.IsTrue(value != null);
         }
         [TestMethod]
         public void Ibd_TextParser_Parse_Should_ParseCorrectText()
         {
-            var idbPicks = TextParser.Parse(_correctText);
+            var idbPicks = IbdParser.Parse(_correctText);
             Assert.IsTrue(idbPicks.Count == 50);
         }
 

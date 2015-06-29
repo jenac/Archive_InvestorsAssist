@@ -50,7 +50,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\Database_0001.sql" />
+    <Content Include="Scripts\Company.sql" />
+    <Content Include="Scripts\Idb.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -29,6 +29,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvestorsAssist.Algorithm.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvestorsAssist._OnStart", "InvestorsAssist._OnStart\InvestorsAssist._OnStart.csproj", "{6448E8BA-C124-4A24-893C-3AA1761EE841}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvestorsAssist._UpdateCompany", "InvestorsAssist._UpdateCompany\InvestorsAssist._UpdateCompany.csproj", "{4DC43594-EDCB-431E-B24D-053448CF8217}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{53EFFE44-4728-48AC-A921-AA920D267935}"
+	ProjectSection(SolutionItems) = preProject
+		InvestorsAssist.build = InvestorsAssist.build
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +94,10 @@ Global
 		{6448E8BA-C124-4A24-893C-3AA1761EE841}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6448E8BA-C124-4A24-893C-3AA1761EE841}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6448E8BA-C124-4A24-893C-3AA1761EE841}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DC43594-EDCB-431E-B24D-053448CF8217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DC43594-EDCB-431E-B24D-053448CF8217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DC43594-EDCB-431E-B24D-053448CF8217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DC43594-EDCB-431E-B24D-053448CF8217}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

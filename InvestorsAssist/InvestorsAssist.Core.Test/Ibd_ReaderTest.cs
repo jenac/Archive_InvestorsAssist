@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using InvestorsAssist.Core.Ibd;
+using InvestorsAssist.Core;
 
 namespace InvestorsAssist.Core.Test
 {
@@ -10,7 +10,7 @@ namespace InvestorsAssist.Core.Test
         [TestMethod]
         public void Ibd_Reader_Should_Download()
         {
-            var reader = new Reader();
+            var reader = new IbdReader();
             var ret = reader.DownloadIbd50List();
             Assert.IsTrue(ret.Count == 50);
         }

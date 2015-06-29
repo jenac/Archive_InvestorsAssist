@@ -1,5 +1,4 @@
 ﻿using InvestorsAssist.Core;
-using InvestorsAssist.Core.Ta;
 using InvestorsAssist.DataAccess;
 using InvestorsAssist.Utility.IO;
 using System;
@@ -8,20 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InvestorsAssist.Execute
+namespace InvestorsAssist._UpdateCompany
 {
     class Program
     {
+        /// <summary>
+        /// Update companies/ETF List Weekly, Send Email Notify new companies
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
-            Logger.Instance.Info("InvestorsAssist.Execute started ...");
+            Logger.Instance.Info("InvestorsAssist._UpdateCompany started ...");
             try
             {
                 using (var context = new DataContext("InvestorsAssist"))
                 {
                     List<IWorker> workers = new List<IWorker> {
-                        new IbdUpdateWorker(context),
-                        new AnalyseWorker(context),
+                        new CompanyUpdateWorker(context),
                     };
                     foreach (var worker in workers)
                     {
@@ -35,7 +37,7 @@ namespace InvestorsAssist.Execute
                 Logger.Instance.InfoFormat("Exception: {0}", ex.Message);
                 Logger.Instance.Info(ex.StackTrace);
             }
-            Logger.Instance.Info("InvestorsAssist.Execute done.");
+            Logger.Instance.Info("InvestorsAssist._UpdateCompany done.");
         }
     }
 }

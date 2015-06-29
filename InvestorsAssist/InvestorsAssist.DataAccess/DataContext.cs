@@ -54,5 +54,16 @@ namespace InvestorsAssist.DataAccess
         {
             return this._objectCtx.ExecuteStoreQuery<string>("EXEC Proc_IbdPick_Ibd50_Symbol_By_Date_Get {0}", latest);
         }
+
+        public IEnumerable<string> GetCompanySymbols()
+        {
+            return this._objectCtx.ExecuteStoreQuery<string>("EXEC Proc_Company_Symbol_Get");
+        }
+
+        public void SaveCompany(Company value)
+        {
+            this.Database.ExecuteSqlCommand("EXEC Proc_Company_Upsert {0}, {1}, {2}, {3}, {4}, {5}, {6}",
+                value.Symbol, value.Exchange, value.Name, value.LastSale, value.MarketCap, value.Sector, value.Industry);
+        }
     }
 }
