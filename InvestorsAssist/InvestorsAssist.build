@@ -16,7 +16,7 @@
 
 
   <Target Name="BeforeBuild">
-    <Message Text="Delete old files ..."/>
+    <Message Text="Delete old files ..." Importance="high"/>
     <ItemGroup>
       <FilesToClean Include="$(OutputDir)\*.*" />
     </ItemGroup>
