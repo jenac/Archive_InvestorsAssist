@@ -4,17 +4,26 @@
     ToolsVersion="4.0"
     DefaultTargets="Build">
 
-    <PropertyGroup>
-        <OutputDir>C:\LHM\InvestorsAssist</OutputDir>
-    </PropertyGroup>
+  <PropertyGroup>
+    <OutputDir>C:\LHM\InvestorsAssist</OutputDir>
+  </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectToBuild Include="InvestorsAssist.sln">
+      <Properties>OutputPath=$(OutputDir);Configuration=Release</Properties>
+    </ProjectToBuild>
+  </ItemGroup>
+
+
+  <Target Name="BeforeBuild">
+    <Message Text="Delete old files ..."/>
     <ItemGroup>
-        <ProjectToBuild Include="InvestorsAssist.sln">
-            <Properties>OutputPath=$(OutputDir);Configuration=Release</Properties>
-        </ProjectToBuild>
+      <FilesToClean Include="$(OutputDir)\*.*" />
     </ItemGroup>
+    <Delete Files="@(FilesToClean)" ContinueOnError="true"/>
+  </Target>
 
-    <Target Name="Build">
-        <MSBuild Projects="@(ProjectToBuild)"/>
-    </Target>
+  <Target Name="Build">
+    <MSBuild Projects="@(ProjectToBuild)"/>
+  </Target>
 </Project>
