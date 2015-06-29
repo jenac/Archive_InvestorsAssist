@@ -1,6 +1,9 @@
-﻿using InvestorsAssist.DataAccess;
+﻿using InvestorsAssist.Configuration;
+using InvestorsAssist.DataAccess;
 using InvestorsAssist.Entities;
+using InvestorsAssist.Utility.Internet;
 using InvestorsAssist.Utility.IO;
+using InvestorsAssist.Utility.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +37,19 @@ namespace InvestorsAssist.Core
                 foreach(var company in newCompanies)
                 {
                     _context.SaveCompany(company);
+                }
+                using (var email = new EmailClient(
+                SystemSettings.Instance.EmailSetting.Server,
+                SystemSettings.Instance.EmailSetting.Port,
+                SystemSettings.Instance.EmailSetting.Username,
+                SystemSettings.Instance.EmailSetting.SecurePassword.ToPlainString()))
+                {
+                    email.SendHtmlEmail(SystemSettings.Instance.EmailSetting.To,
+                        SystemSettings.Instance.EmailSetting.Cc,
+                        "IA: Update Company",
+                        string.Format("{0} new companies: {1}", 
+                            newCompanies.Count, 
+                            string.Join(", ", newCompanies.Select(c => c.Symbol).ToArray())));
                 }
             }
             else
