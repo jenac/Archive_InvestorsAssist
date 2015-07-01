@@ -1,6 +1,7 @@
 ﻿using InvestorsAssist.DataAccess;
 using InvestorsAssist.Entities;
 using InvestorsAssist.Utility.IO;
+using InvestorsAssist.Utility.Text;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,12 +73,60 @@ namespace InvestorsAssist.Core
 
 		private List<Eod> ReadEods(List<EodParam> parameters)
 		{
+            var corrected = parameters
+                .Select(p => MergeSpiltCorrection(p))
+                .Where(cp => cp!= null).ToList();
+            //Merge Split
 			List<Eod> seed = new List<Eod> ();
 			List<Eod> value =
-				parameters.AsParallel()
+                corrected.AsParallel()
 					.Select(p => _reader.ReadEodBySymbol(p))
 					.Aggregate(seed, (i, j) => i.Union(j).ToList());
 			return value;
 		}
+
+        private EodParam MergeSpiltCorrection(EodParam source)
+        {
+            if (source.Start == DateTime.Today.AddYears(-30))
+                return source;
+            var overlap = new EodParam {
+                Symbol = source.Symbol,
+                Start = source.Start.AddDays(-10),
+                End = source.Start.AddDays(1)
+            };
+            var online = _reader.ReadEodBySymbol(overlap);
+            if (online.Count == 0)
+                return null;
+
+            EodParam corrected = new EodParam {
+                Symbol = source.Symbol,
+                Start = DateTime.Today.AddYears(-30),
+                End = source.End
+            };
+            var database = _context.GetLast3Eod(overlap.Symbol).ToList();
+            if (database.Count == 0)
+            {
+                Logger.Instance.InfoFormat("{0} merge/split? will re-download", overlap.Symbol);
+                return corrected;
+            }
+            foreach(var eod in database)
+            {
+                var found = online.Where(d => d.Symbol == eod.Symbol && d.Date == eod.Date).FirstOrDefault();
+                if (found == null)
+                {
+                    continue;
+                }
+                if (!TextParser.AlmostEqual(found.Open, eod.Open) ||
+                    !TextParser.AlmostEqual(found.High, eod.High) ||
+                    !TextParser.AlmostEqual(found.Low, eod.Low) ||
+                    !TextParser.AlmostEqual(found.Close, eod.Close))
+                {
+                    Logger.Instance.InfoFormat("{0} merge/split? will re-download", eod.Symbol);
+                    return corrected;
+                }
+            }
+
+            return source;
+        }
     }
 }

@@ -22,3 +22,15 @@ AS
 	, ([Close] - [Open]) AS [GL]
 	FROM Eod
 GO
+
+
+CREATE PROCEDURE [dbo].[Proc_Last3Eod_Get] 
+(
+	@Symbol NVARCHAR(16)
+)
+AS 
+BEGIN
+	SELECT TOP 3 [Symbol], [Date], [Open], [High], [Low], [Close], [Volume]
+		FROM Eod  WHERE [Symbol] = @Symbol Order By [Date] DESC
+END;
+GO

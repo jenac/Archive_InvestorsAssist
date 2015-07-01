@@ -37,6 +37,7 @@ namespace InvestorsAssist._UpdateEod
             {
                 Logger.Instance.InfoFormat("Exception: {0}", ex.Message);
                 Logger.Instance.Info(ex.StackTrace);
+                ExceptionHandler.AlertViaEmail("InvestorsAssist._UpdateEod", ex);
             }
             Logger.Instance.Info("InvestorsAssist._UpdateEod done.");
         }

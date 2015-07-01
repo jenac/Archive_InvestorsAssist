@@ -82,5 +82,10 @@ ROWTERMINATOR = '\n'
                 (string.Format(_BULK_INSERT, table, file)).Single();
             return rowCount;
         }
+
+        public IEnumerable<Eod> GetLast3Eod(string symbol)
+        {
+            return this._objectCtx.ExecuteStoreQuery<Eod>("EXEC Proc_Last3Eod_Get {0}", symbol);
+        }
     }
 }

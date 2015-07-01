@@ -64,6 +64,7 @@
     <Compile Include="EodParser.cs" />
     <Compile Include="EodReader.cs" />
     <Compile Include="EodUpdateWorker.cs" />
+    <Compile Include="ExceptionHandler.cs" />
     <Compile Include="IbdReader.cs" />
     <Compile Include="IbdParser.cs" />
     <Compile Include="IbdUpdateWorker.cs" />

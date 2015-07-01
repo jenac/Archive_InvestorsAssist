@@ -36,6 +36,7 @@ namespace InvestorsAssist._UpdateCompany
             {
                 Logger.Instance.InfoFormat("Exception: {0}", ex.Message);
                 Logger.Instance.Info(ex.StackTrace);
+                ExceptionHandler.AlertViaEmail("InvestorsAssist._UpdateCompany", ex);
             }
             Logger.Instance.Info("InvestorsAssist._UpdateCompany done.");
         }

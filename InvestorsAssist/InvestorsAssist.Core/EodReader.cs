@@ -9,7 +9,7 @@ using System.Web;
 
 namespace InvestorsAssist.Core
 {
-    public struct EodParam
+    public class EodParam
     {
         public string Symbol { get; set; }
         public DateTime Start { get; set; }

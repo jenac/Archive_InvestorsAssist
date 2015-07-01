@@ -34,6 +34,7 @@ namespace InvestorsAssist.Execute
             {
                 Logger.Instance.InfoFormat("Exception: {0}", ex.Message);
                 Logger.Instance.Info(ex.StackTrace);
+                ExceptionHandler.AlertViaEmail("InvestorsAssist.Execute", ex);
             }
             Logger.Instance.Info("InvestorsAssist.Execute done.");
         }
