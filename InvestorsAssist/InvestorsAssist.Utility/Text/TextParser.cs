@@ -8,10 +8,10 @@ namespace InvestorsAssist.Utility.Text
 {
     public static class TextParser
     {
-        public static float ParseFloat(string source)
+        public static double ParseDouble(string source)
         {
-            float value;
-            if (float.TryParse(source, out value))
+            double value;
+            if (double.TryParse(source, out value))
                 return value;
             return 0;
         }

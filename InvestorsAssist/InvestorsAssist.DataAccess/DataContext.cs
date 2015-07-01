@@ -65,5 +65,22 @@ namespace InvestorsAssist.DataAccess
             this.Database.ExecuteSqlCommand("EXEC Proc_Company_Upsert {0}, {1}, {2}, {3}, {4}, {5}, {6}",
                 value.Symbol, value.Exchange, value.Name, value.LastSale, value.MarketCap, value.Sector, value.Industry);
         }
+
+        public IEnumerable<DataState> GetEodState()
+        {
+            return this._objectCtx.ExecuteStoreQuery<DataState>("EXEC Proc_EodState_Get");
+        }
+
+        //Bulk Insert
+        public int LoadData(string file, string table)
+        {
+            const string _BULK_INSERT = @"BULK INSERT {0} FROM '{1}' WITH ( 
+FIELDTERMINATOR = ',',
+ROWTERMINATOR = '\n'
+); SELECT @@ROWCOUNT";
+            int rowCount = _objectCtx.ExecuteStoreQuery<int>
+                (string.Format(_BULK_INSERT, table, file)).Single();
+            return rowCount;
+        }
     }
 }

@@ -50,7 +50,7 @@ namespace InvestorsAssist.Core
 
         private List<Company> ReadCompaniesByExchange(string exchange)
         {
-            string csv = _client.DownloadString(
+            string csv = _client.WebGet(
                 string.Format(_COMPANY_URL_FMT, exchange));
             string[] lines =
                 csv.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
@@ -59,7 +59,7 @@ namespace InvestorsAssist.Core
 
         private List<Company> ReadETFAsCompanies()
         {
-            string json = _client.DownloadString(_ETF_URL);
+            string json = _client.WebGet(_ETF_URL);
             var etfs = JsonConvert.DeserializeObject<List<Etf>>(json);
             return etfs.Select(e => new Company
             {

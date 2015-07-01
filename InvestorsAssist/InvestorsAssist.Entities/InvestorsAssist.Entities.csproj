@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Company.cs" />
+    <Compile Include="DataState.cs" />
+    <Compile Include="Eod.cs" />
     <Compile Include="IbdData.cs" />
     <Compile Include="IbdPick.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

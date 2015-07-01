@@ -22,7 +22,7 @@ namespace InvestorsAssist.Core
                 {
                     Symbol = sa[0].Trim(trimCompany),
                     Name = sa[1].Trim(trimCompany).Replace(',', ' '),
-                    LastSale = TextParser.ParseFloat(sa[2].Trim(trimCompany)),
+                    LastSale = TextParser.ParseDouble(sa[2].Trim(trimCompany)),
                     MarketCap = TextParser.ParseDecimal(sa[3].Trim(trimCompany)),
                     Sector = sa[6].Trim(trimCompany).Replace(',', ' '),
                     Industry = sa[7].Trim(trimCompany).Replace(',', ' '),

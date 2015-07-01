@@ -74,5 +74,17 @@ namespace InvestorsAssist.Utility.Internet
                 }
             }
         }
+
+        public string WebGet(string url)
+        {
+            try
+            {
+                return DownloadString(url);
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            } 
+        }
     }
 }

@@ -1,33 +1,25 @@
-﻿using System;
+﻿using InvestorsAssist.Entities;
+using InvestorsAssist.Utility.Text;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using InvestorsAssist.Utility.Text;
 
-namespace InvestorsAssist.Core.Ta
+namespace InvestorsAssist.Core
 {
-    public class PriceData
+    static class EodParser
     {
-        public DateTime Date { get; set; }
-        public double Open { get; set; }
-        public double High { get; set; }
-        public double Low { get; set; }
-        public double Close { get; set; }
-        public decimal Volume { get; set; }
-    }
-
-    public static class PriceDataParser
-    {
-        public static PriceData Parse(string line)
+        public static Eod ParseEod(string line, string symbol)
         {
             if (line.StartsWith("Date", StringComparison.InvariantCultureIgnoreCase))
                 return null;
             string[] sa = line.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
             if (sa.Count() == 6)
             {
-                return new PriceData
+                return new Eod
                 {
+                    Symbol = symbol,
                     Date = DateTime.Parse(sa[0]),
                     Open = TextParser.ParseDouble(sa[1]),
                     High = TextParser.ParseDouble(sa[2]),

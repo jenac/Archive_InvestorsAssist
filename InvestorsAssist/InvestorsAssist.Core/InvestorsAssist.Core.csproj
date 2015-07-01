@@ -61,6 +61,9 @@
     <Compile Include="CompanyParser.cs" />
     <Compile Include="CompanyReader.cs" />
     <Compile Include="CompanyUpdateWorker.cs" />
+    <Compile Include="EodParser.cs" />
+    <Compile Include="EodReader.cs" />
+    <Compile Include="EodUpdateWorker.cs" />
     <Compile Include="IbdReader.cs" />
     <Compile Include="IbdParser.cs" />
     <Compile Include="IbdUpdateWorker.cs" />

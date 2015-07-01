@@ -36,6 +36,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		InvestorsAssist.build = InvestorsAssist.build
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvestorsAssist._UpdateEod", "InvestorsAssist._UpdateEod\InvestorsAssist._UpdateEod.csproj", "{C0564E40-D3CE-4588-8DDD-EE0056B6602D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +100,10 @@ Global
 		{4DC43594-EDCB-431E-B24D-053448CF8217}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DC43594-EDCB-431E-B24D-053448CF8217}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DC43594-EDCB-431E-B24D-053448CF8217}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0564E40-D3CE-4588-8DDD-EE0056B6602D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0564E40-D3CE-4588-8DDD-EE0056B6602D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0564E40-D3CE-4588-8DDD-EE0056B6602D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0564E40-D3CE-4588-8DDD-EE0056B6602D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
