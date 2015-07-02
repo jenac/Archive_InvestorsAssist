@@ -87,5 +87,10 @@ ROWTERMINATOR = '\n'
         {
             return this._objectCtx.ExecuteStoreQuery<Eod>("EXEC Proc_Last3Eod_Get {0}", symbol);
         }
+
+        public void DeleteEod(string symbol)
+        {
+            this.Database.ExecuteSqlCommand("EXEC Proc_Eod_Delete {0}", symbol);
+        }
     }
 }

@@ -121,6 +121,7 @@ namespace InvestorsAssist.Core
                     !TextParser.AlmostEqual(found.Low, eod.Low) ||
                     !TextParser.AlmostEqual(found.Close, eod.Close))
                 {
+                    _context.DeleteEod(overlap.Symbol);
                     Logger.Instance.InfoFormat("{0} merge/split? will re-download", eod.Symbol);
                     return corrected;
                 }
