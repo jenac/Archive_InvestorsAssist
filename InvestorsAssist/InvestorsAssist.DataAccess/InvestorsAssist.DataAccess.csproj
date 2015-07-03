@@ -51,9 +51,10 @@
     <Compile Include="UpdateHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\Eod.Sql" />
+    <Content Include="Scripts\Eod.sql" />
     <Content Include="Scripts\Company.sql" />
-    <Content Include="Scripts\_Final.Sql" />
+    <Content Include="Scripts\Indicator.sql" />
+    <Content Include="Scripts\_Final.sql" />
     <Content Include="Scripts\Idb.sql" />
   </ItemGroup>
   <ItemGroup>

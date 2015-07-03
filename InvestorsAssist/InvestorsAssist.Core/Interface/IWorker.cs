@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InvestorsAssist.Core
+namespace InvestorsAssist.Core.Interface
 {
     public interface IWorker
     {

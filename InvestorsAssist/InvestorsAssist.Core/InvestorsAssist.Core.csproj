@@ -58,23 +58,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompanyParser.cs" />
-    <Compile Include="CompanyReader.cs" />
-    <Compile Include="CompanyUpdateWorker.cs" />
-    <Compile Include="EodParser.cs" />
-    <Compile Include="EodReader.cs" />
-    <Compile Include="EodUpdateWorker.cs" />
+    <Compile Include="Interface\IAnalyzer.cs" />
+    <Compile Include="Schema\ADX.cs" />
+    <Compile Include="Schema\BollingerBands.cs" />
+    <Compile Include="Schema\GainLoss.cs" />
+    <Compile Include="Schema\IndicatorDTO.cs" />
+    <Compile Include="Schema\MACD.cs" />
+    <Compile Include="Schema\Profit.cs" />
+    <Compile Include="Schema\RSI.cs" />
+    <Compile Include="Schema\RSIPredict.cs" />
+    <Compile Include="Schema\RSIRange.cs" />
+    <Compile Include="Schema\SMA.cs" />
+    <Compile Include="Ta\Analyzer\MACDAnalyzer.cs" />
+    <Compile Include="Ta\Analyzer\BollingerBandsAnalyzer.cs" />
+    <Compile Include="Ta\Analyzer\ADXAnalyzer.cs" />
+    <Compile Include="Ta\Analyzer\SMAAnalyzer.cs" />
+    <Compile Include="Ta\Analyzer\GainLossAnalyzer.cs" />
+    <Compile Include="Ta\Analyzer\ProfitAnalyzer.cs" />
+    <Compile Include="Ta\Analyzer\RSIAnalyzer.cs" />
+    <Compile Include="Symbol\CompanyParser.cs" />
+    <Compile Include="Symbol\CompanyReader.cs" />
+    <Compile Include="Ta\TechnicalAnalyseWorker.cs" />
+    <Compile Include="Symbol\CompanyUpdateWorker.cs" />
+    <Compile Include="Data\EodParser.cs" />
+    <Compile Include="Data\EodReader.cs" />
+    <Compile Include="Data\EodUpdateWorker.cs" />
     <Compile Include="ExceptionHandler.cs" />
-    <Compile Include="IbdReader.cs" />
-    <Compile Include="IbdParser.cs" />
-    <Compile Include="IbdUpdateWorker.cs" />
-    <Compile Include="IWorker.cs" />
+    <Compile Include="Ibd\IbdReader.cs" />
+    <Compile Include="Ibd\IbdParser.cs" />
+    <Compile Include="Ibd\IbdUpdateWorker.cs" />
+    <Compile Include="Interface\IWorker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Ta\AnalyseWorker.cs" />
-    <Compile Include="Ta\DailySummary.cs" />
-    <Compile Include="Ta\PriceData.cs" />
-    <Compile Include="Ta\PriceReader.cs" />
-    <Compile Include="Ta\StockSummuary.cs" />
+    <Compile Include="Ta\TracingWorker.cs" />
+    <Compile Include="Schema\DailySummary.cs" />
+    <Compile Include="Schema\PriceData.cs" />
+    <Compile Include="Schema\PriceReader.cs" />
+    <Compile Include="Schema\StockSummuary.cs" />
     <Compile Include="Ta\TaExtension.cs" />
   </ItemGroup>
   <ItemGroup>

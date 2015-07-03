@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using InvestorsAssist.Entities;
 using InvestorsAssist.Utility.Text;
 
-namespace InvestorsAssist.Core
+namespace InvestorsAssist.Core.Symbol
 {
     static class CompanyParser
     {

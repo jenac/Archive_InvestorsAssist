@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InvestorsAssist.Core.Ta
+namespace InvestorsAssist.Core.Schema
 {
     public class StockSummuary
     {

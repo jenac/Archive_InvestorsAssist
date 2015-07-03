@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using InvestorsAssist.Utility.Text;
 
-namespace InvestorsAssist.Core.Ta
+namespace InvestorsAssist.Core.Schema
 {
+    //Todo: refactor it with Eod
     public class PriceData
     {
         public DateTime Date { get; set; }

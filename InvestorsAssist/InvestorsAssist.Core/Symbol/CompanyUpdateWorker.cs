@@ -1,4 +1,5 @@
 ﻿using InvestorsAssist.Configuration;
+using InvestorsAssist.Core.Interface;
 using InvestorsAssist.DataAccess;
 using InvestorsAssist.Entities;
 using InvestorsAssist.Utility.Internet;
@@ -10,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InvestorsAssist.Core
+namespace InvestorsAssist.Core.Symbol
 {
     public class CompanyUpdateWorker : IWorker
     {

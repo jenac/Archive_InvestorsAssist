@@ -1,11 +1,10 @@
 ﻿using InvestorsAssist.Core;
+using InvestorsAssist.Core.Interface;
+using InvestorsAssist.Core.Symbol;
 using InvestorsAssist.DataAccess;
 using InvestorsAssist.Utility.IO;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace InvestorsAssist._UpdateCompany
 {

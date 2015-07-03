@@ -1,4 +1,5 @@
-﻿using InvestorsAssist.DataAccess;
+﻿using InvestorsAssist.Core.Interface;
+using InvestorsAssist.DataAccess;
 using InvestorsAssist.Entities;
 using InvestorsAssist.Utility.IO;
 using InvestorsAssist.Utility.Text;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InvestorsAssist.Core
+namespace InvestorsAssist.Core.Data
 {
     public class EodUpdateWorker : IWorker
     {

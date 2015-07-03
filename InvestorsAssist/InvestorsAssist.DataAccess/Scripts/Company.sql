@@ -48,3 +48,10 @@ BEGIN
 	END;
 END;
 GO
+
+CREATE PROCEDURE [dbo].[Proc_DistinctSymbolFromCompany_Get] 
+AS 
+BEGIN
+	SELECT DISTINCT(Symbol) FROM Company
+END;
+GO

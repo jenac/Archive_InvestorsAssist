@@ -8,8 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace InvestorsAssist.Core.Ta
+namespace InvestorsAssist.Core.Schema
 {
+    //Refactor it with EodReader
     static class PriceReader
     {
         //Read Eod from Google, it handles the merge/split

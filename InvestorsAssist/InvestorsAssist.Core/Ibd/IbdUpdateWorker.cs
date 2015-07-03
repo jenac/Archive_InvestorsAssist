@@ -1,4 +1,5 @@
-﻿using InvestorsAssist.DataAccess;
+﻿using InvestorsAssist.Core.Interface;
+using InvestorsAssist.DataAccess;
 using InvestorsAssist.Utility.IO;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InvestorsAssist.Core
+namespace InvestorsAssist.Core.Ibd
 {
     public class IbdUpdateWorker : IWorker
     {

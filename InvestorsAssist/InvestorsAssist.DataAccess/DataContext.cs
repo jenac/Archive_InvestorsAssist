@@ -92,5 +92,21 @@ ROWTERMINATOR = '\n'
         {
             this.Database.ExecuteSqlCommand("EXEC Proc_Eod_Delete {0}", symbol);
         }
+
+        public IEnumerable<string> GetDistinctSymbolFromCompany()
+        {
+            return this._objectCtx.ExecuteStoreQuery<string>("EXEC Proc_DistinctSymbolFromCompany_Get");
+        }
+
+        public IEnumerable<Eod> GetEod(string symbol)
+        {
+            return this._objectCtx.ExecuteStoreQuery<Eod>("EXEC Proc_Eod_Get {0}", symbol);
+        }
+
+        public void SaveIndicator(Indicator value)
+        {
+            this.Database.ExecuteSqlCommand("EXEC Proc_Indicator_Upsert {0}, {1}, {2}, {3}", 
+                value.Symbol, value.Name, value.Date, value.Data);
+        }
     }
 }

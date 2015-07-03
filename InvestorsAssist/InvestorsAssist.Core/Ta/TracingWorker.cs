@@ -2,6 +2,8 @@
 using InvestorsAssist.Algorithm.Helper;
 using InvestorsAssist.Algorithm.Schema;
 using InvestorsAssist.Configuration;
+using InvestorsAssist.Core.Interface;
+using InvestorsAssist.Core.Schema;
 using InvestorsAssist.DataAccess;
 using InvestorsAssist.Entities;
 using InvestorsAssist.Utility.Internet;
@@ -16,11 +18,11 @@ using System.Threading.Tasks;
 
 namespace InvestorsAssist.Core.Ta
 {
-    public class AnalyseWorker : IWorker
+    public class TracingWorker : IWorker
     {
         private readonly DataContext _context;
 
-        public AnalyseWorker(DataContext context)
+        public TracingWorker(DataContext context)
         {
             _context = context;
         }

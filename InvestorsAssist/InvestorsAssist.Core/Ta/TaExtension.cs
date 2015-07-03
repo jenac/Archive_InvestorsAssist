@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InvestorsAssist.Core.Schema;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

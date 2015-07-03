@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using InvestorsAssist.Core;
+using InvestorsAssist.Core.Ibd;
 
 namespace InvestorsAssist.Core.Test
 {

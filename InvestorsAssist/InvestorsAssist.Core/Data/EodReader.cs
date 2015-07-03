@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace InvestorsAssist.Core
+namespace InvestorsAssist.Core.Data
 {
     public class EodParam
     {

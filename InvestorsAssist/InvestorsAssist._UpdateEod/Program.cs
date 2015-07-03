@@ -1,5 +1,7 @@
 ﻿
 using InvestorsAssist.Core;
+using InvestorsAssist.Core.Data;
+using InvestorsAssist.Core.Interface;
 using InvestorsAssist.DataAccess;
 using InvestorsAssist.Utility.IO;
 using System;

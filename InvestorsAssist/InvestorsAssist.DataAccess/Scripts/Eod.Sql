@@ -44,3 +44,14 @@ BEGIN
 	DELETE FROM Eod  WHERE [Symbol] = @Symbol
 END;
 GO
+
+CREATE PROCEDURE [dbo].[Proc_Eod_Get] 
+(
+	@Symbol NVARCHAR(16)
+)
+AS 
+BEGIN
+	SELECT [Symbol], [Date], [Open], [High], [Low], [Close], [Volume]
+		FROM Eod  WHERE [Symbol] = @Symbol ORDER BY [Date] ASC
+END;
+GO

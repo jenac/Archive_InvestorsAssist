@@ -11,7 +11,7 @@ using InvestorsAssist.Entities;
 using HtmlAgilityPack;
 using System.Threading;
 
-namespace InvestorsAssist.Core
+namespace InvestorsAssist.Core.Ibd
 {
     class IbdReader
     {
