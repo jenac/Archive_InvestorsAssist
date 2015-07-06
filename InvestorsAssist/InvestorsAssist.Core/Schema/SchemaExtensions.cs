@@ -1,13 +1,12 @@
-﻿using InvestorsAssist.Core.Schema;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InvestorsAssist.Core.Ta
+namespace InvestorsAssist.Core.Schema
 {
-    public static class TaExtension
+    public static class SchemaExtensions
     {
         public static string ToHtmlPresentation(this DailySummary summary)
         {
@@ -21,24 +20,24 @@ namespace InvestorsAssist.Core.Ta
             sb.AppendLine(@"<body>");
             sb.AppendFormat(@"<h1>Summary on {0}</h1>", summary.TradingDate.ToString("yyyy-MM-dd"));
             if (summary.LatestIdb50.Count > 0)
-                sb.AppendFormat(@"<h3>IBD 50: {0}</h3>", 
+                sb.AppendFormat(@"<h3>IBD 50: {0}</h3>",
                     string.Join(", ", summary.LatestIdb50.ToArray()));
 
             if (summary.NewInIdb50.Count > 0)
-                sb.AppendFormat(@"<h3>New in IBD 50: {0}</h3>", 
+                sb.AppendFormat(@"<h3>New in IBD 50: {0}</h3>",
                     string.Join(", ", summary.NewInIdb50.ToArray()));
 
             if (summary.JustOutIdb50.Count > 0)
-                sb.AppendFormat(@"<h3>Just fall out IBD 50: {0}</h3>", 
+                sb.AppendFormat(@"<h3>Just fall out IBD 50: {0}</h3>",
                     string.Join(", ", summary.JustOutIdb50.ToArray()));
-                
+
             if (summary.StillFollowing.Count > 0)
-                sb.AppendFormat(@"<h3>Still following list: {0}</h3>", 
+                sb.AppendFormat(@"<h3>Still following list: {0}</h3>",
                     string.Join(", ", summary.StillFollowing.ToArray()));
 
             sb.AppendLine(@"<hr/>");
             sb.AppendLine("<ul>");
-            foreach(var detail in summary.DetailedSummaries)
+            foreach (var detail in summary.DetailedSummaries)
             {
                 var messages = new List<string>();
                 if (detail.Rsi <= 30)
@@ -50,7 +49,7 @@ namespace InvestorsAssist.Core.Ta
                     messages.Add("Last High >= R70 price");
                 if (detail.LastLow <= detail.R30Price)
                     messages.Add("Last Low <= R30 price");
-                
+
                 if (detail.LastLow <= detail.SMA50)
                     messages.Add("Last Low <= SMA 50");
 
@@ -61,7 +60,7 @@ namespace InvestorsAssist.Core.Ta
                     messages.Add("SMA 50/200 bearish cross over");
                 if (detail.PrevSMA50 < detail.PrevSMA200 && detail.SMA50 > detail.SMA200)
                     messages.Add("SMA 50/200 bullish cross over");
-        
+
                 if (detail.PrevSMA9 > detail.PrevSMA21 && detail.SMA9 < detail.SMA21)
                     messages.Add("SMA 9/21 bearish cross over");
                 if (detail.PrevSMA9 < detail.PrevSMA21 && detail.SMA9 > detail.SMA21)
@@ -73,7 +72,7 @@ namespace InvestorsAssist.Core.Ta
                 if (detail.LastLow <= detail.BB.Lower)
                     messages.Add("Last Low >= BB Lower");
 
-                if (detail.PrevMacd.MacdValue > detail.PrevMacd.MacdSingal 
+                if (detail.PrevMacd.MacdValue > detail.PrevMacd.MacdSingal
                     && detail.Macd.MacdValue < detail.Macd.MacdSingal)
                     messages.Add("MACD bearish cross over");
                 if (detail.PrevMacd.MacdValue < detail.PrevMacd.MacdSingal

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InvestorsAssist.Core.Schema
 {
-    public class StockSummuary
+    public class TraceSummuary
     {
         public string Symbol { get; set; }
         public double LastClose { get; set; }

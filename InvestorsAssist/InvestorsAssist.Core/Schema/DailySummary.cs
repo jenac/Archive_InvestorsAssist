@@ -15,7 +15,7 @@ namespace InvestorsAssist.Core.Schema
 
         public List<string> StillFollowing { get; set; }
 
-        public List<StockSummuary> DetailedSummaries { get; set; }
+        public List<TraceSummuary> DetailedSummaries { get; set; }
 
         public DailySummary(DateTime tradingDate)
         {

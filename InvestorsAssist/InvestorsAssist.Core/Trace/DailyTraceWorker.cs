@@ -5,7 +5,6 @@ using InvestorsAssist.Configuration;
 using InvestorsAssist.Core.Interface;
 using InvestorsAssist.Core.Schema;
 using InvestorsAssist.DataAccess;
-using InvestorsAssist.Entities;
 using InvestorsAssist.Utility.Internet;
 using InvestorsAssist.Utility.IO;
 using InvestorsAssist.Utility.Security;
@@ -16,24 +15,24 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace InvestorsAssist.Core.Ta
+namespace InvestorsAssist.Core.Trace
 {
-    public class TracingWorker : IWorker
+    public class DailyTraceWorker : IWorker
     {
         private readonly DataContext _context;
 
-        public TracingWorker(DataContext context)
+        public DailyTraceWorker(DataContext context)
         {
             _context = context;
         }
         public string Name
         {
-            get { return "Technical Analysis"; }
+            get { return "Daily Trace"; }
         }
 
         public void DoWork()
         {
-            
+
             DateTime? lastTradingDate = GetLastTradingDate();
             if (lastTradingDate == null)
             {
@@ -70,7 +69,7 @@ namespace InvestorsAssist.Core.Ta
             summary.StillFollowing = following.Except(latestList).ToList();
 
             //process following list:
-            List<StockSummuary> detailedSummaries = new List<StockSummuary>();
+            List<TraceSummuary> detailedSummaries = new List<TraceSummuary>();
             foreach (var symbol in following)
             {
                 var prices = GetPriceData(symbol);
@@ -89,14 +88,14 @@ namespace InvestorsAssist.Core.Ta
             summary.DetailedSummaries = detailedSummaries;
 
             using (var email = new EmailClient(
-                SystemSettings.Instance.EmailSetting.Server, 
+                SystemSettings.Instance.EmailSetting.Server,
                 SystemSettings.Instance.EmailSetting.Port,
                 SystemSettings.Instance.EmailSetting.Username,
                 SystemSettings.Instance.EmailSetting.SecurePassword.ToPlainString()))
             {
-                email.SendHtmlEmail(SystemSettings.Instance.EmailSetting.To, 
-                    SystemSettings.Instance.EmailSetting.Cc, 
-                    "IA: Daily Summary", 
+                email.SendHtmlEmail(SystemSettings.Instance.EmailSetting.To,
+                    SystemSettings.Instance.EmailSetting.Cc,
+                    "IA: Daily Summary",
                     summary.ToHtmlPresentation());
             }
             //Load template and create/send email
@@ -134,9 +133,9 @@ namespace InvestorsAssist.Core.Ta
             return prices.Where(e => e != null).OrderBy(e => e.Date).ToList();
         }
 
-        private StockSummuary Analyse(string symbol, List<PriceData> prices)
+        private TraceSummuary Analyse(string symbol, List<PriceData> prices)
         {
-            StockSummuary value = new StockSummuary { Symbol = symbol };
+            TraceSummuary value = new TraceSummuary { Symbol = symbol };
             value.LastClose = prices.Last().Close;
             value.LastHigh = prices.Last().High;
             value.LastLow = prices.Last().Low;
