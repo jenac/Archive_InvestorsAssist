@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvestorsAssist.DataAccess"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvestorsAssist.DataAccess.Test", "InvestorsAssist.DataAccess.Test\InvestorsAssist.DataAccess.Test.csproj", "{A12762B8-CD16-483A-ABA4-B93553377260}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvestorsAssist._Execute", "InvestorsAssist.Execute\InvestorsAssist._Execute.csproj", "{2F7E2B94-14E8-4755-AE0B-4E2CBACE1DBF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvestorsAssist.Algorithm", "InvestorsAssist.Algorithm\InvestorsAssist.Algorithm.csproj", "{D6D302A3-579F-47E2-98D0-BB36D6A68853}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvestorsAssist.Algorithm.Test", "InvestorsAssist.Algorithm.Test\InvestorsAssist.Algorithm.Test.csproj", "{4FD0FBA9-1F27-499C-9149-FF7F91FB7D8D}"
@@ -86,10 +84,6 @@ Global
 		{A12762B8-CD16-483A-ABA4-B93553377260}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A12762B8-CD16-483A-ABA4-B93553377260}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A12762B8-CD16-483A-ABA4-B93553377260}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2F7E2B94-14E8-4755-AE0B-4E2CBACE1DBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F7E2B94-14E8-4755-AE0B-4E2CBACE1DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F7E2B94-14E8-4755-AE0B-4E2CBACE1DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2F7E2B94-14E8-4755-AE0B-4E2CBACE1DBF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D6D302A3-579F-47E2-98D0-BB36D6A68853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D6D302A3-579F-47E2-98D0-BB36D6A68853}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6D302A3-579F-47E2-98D0-BB36D6A68853}.Release|Any CPU.ActiveCfg = Release|Any CPU
