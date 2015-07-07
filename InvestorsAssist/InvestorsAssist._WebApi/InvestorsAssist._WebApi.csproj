@@ -75,7 +75,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\SettingController.cs" />
     <Compile Include="Controller\SharpChartController.cs" />
+    <Compile Include="Models\IbdAccount.cs" />
     <Compile Include="Models\SharpChartJS.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

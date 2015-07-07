@@ -11,9 +11,14 @@ namespace InvestorsAssist._WebApi
     {
         static void Main(string[] args)
         {
+#if DEBUG
+            string baseAddress = @"http://localhost:8887/InvestorsAssist/";
+#else
+                    string baseAddress = @"http://localhost:8888/InvestorsAssist/";
+#endif
             try
             {
-                string baseAddress = @"http://localhost:8888/InvestorsAssist/";// ConfigurationManager.AppSettings["BaseAddress"];
+        
                 if (string.IsNullOrEmpty(baseAddress))
                     throw new Exception("Missing Configuration: BaseAddress");
                 Console.WriteLine("Starting service...");
