@@ -51,18 +51,14 @@ namespace InvestorsAssist.Utility.IO
 
         public static string GetSettingsFolder()
         {
-#if DEBUG
+
             return @"C:\LHM\Settings\InvestorsAssist";
-#else
+            /*
             string codeBase = Assembly.GetExecutingAssembly().CodeBase;
             UriBuilder uri = new UriBuilder(codeBase);
             string path = Uri.UnescapeDataString(uri.Path);
             return Path.Combine(Directory.GetParent(Path.GetDirectoryName(path)).FullName,
-                "Settings", "InvestorsAssist");
-#endif
-
-
-
+                "Settings", "InvestorsAssist");*/
         }
         private static string GetProfileFolder()
         {
