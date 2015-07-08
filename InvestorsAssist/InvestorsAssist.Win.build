@@ -4,7 +4,7 @@
     ToolsVersion="4.0"
     DefaultTargets="Build">
   <PropertyGroup>
-    <OutputDir>Z:\Stage</OutputDir>
+    <OutputDir>Z:\Stage\Win</OutputDir>
   </PropertyGroup>
 
   <ItemGroup>
