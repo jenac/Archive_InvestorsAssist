@@ -21,12 +21,15 @@ namespace InvestorsAssist.Configuration
 
         public static SystemSettings Instance { get { return lazy.Value; } }
 
+        private const string _keyFilename = "InvestorAssist.key";
+        private const string _emailFilename = "Email.xml";
+        private const string _ibdFilename = "Ibd.xml";
         private SystemSettings()
         {
-            string keyFile = Path.Combine(FileSystem.GetSettingsFolder(), "InvestorAssist.key");
+            string keyFile = Path.Combine(FileSystem.GetSettingsFolder(), _keyFilename);
             _passKey = File.ReadAllText(keyFile).ToSecureString();
 
-            string emailFile = Path.Combine(FileSystem.GetSettingsFolder(), "Email.xml");
+            string emailFile = Path.Combine(FileSystem.GetSettingsFolder(), _emailFilename);
             string emailXml = File.ReadAllText(emailFile);
             this.EmailSetting = Serializer.DeserializeFromXml<Email>(emailXml);
             this.EmailSetting.SecurePassword = Encryption.Decrypt(
@@ -35,7 +38,7 @@ namespace InvestorsAssist.Configuration
                 ).ToSecureString();
             this.EmailSetting.Password = string.Empty;
 
-            string ibdFile = Path.Combine(FileSystem.GetSettingsFolder(), "Ibd.xml");
+            string ibdFile = Path.Combine(FileSystem.GetSettingsFolder(), _ibdFilename);
             string ibdXml = File.ReadAllText(ibdFile);
             this.IbdSetting = Serializer.DeserializeFromXml<Ibd>(ibdXml);
             this.IbdSetting.SecurePassword = Encryption.Decrypt(
@@ -44,6 +47,38 @@ namespace InvestorsAssist.Configuration
                 ).ToSecureString();
             this.IbdSetting.Password = string.Empty;
 
+        }
+
+        public void SetIbdAccount(string username, string password)
+        {
+            string keyFile = Path.Combine(FileSystem.GetSettingsFolder(), _keyFilename);
+            _passKey = File.ReadAllText(keyFile).ToSecureString();
+            Ibd value = new Ibd
+            {
+                Username = username, 
+                Password = Encryption.Encrypt(password, _passKey.ToPlainString()),
+                MaxRetries = this.IbdSetting.MaxRetries,
+                RetryInterval = this.IbdSetting.RetryInterval
+            };
+            string ibdFile = Path.Combine(FileSystem.GetSettingsFolder(), _ibdFilename);
+            File.WriteAllText(ibdFile, Serializer.SerializeToXml<Ibd>(value));
+        }
+
+        public void SetEmailAccount(string username, string password)
+        {
+            string keyFile = Path.Combine(FileSystem.GetSettingsFolder(), _keyFilename);
+            _passKey = File.ReadAllText(keyFile).ToSecureString();
+            Email value = new Email
+            {
+                Server = this.EmailSetting.Server,
+                Port = this.EmailSetting.Port,
+                Username = username,
+                Password = Encryption.Encrypt(password, _passKey.ToPlainString()),
+                To = this.EmailSetting.To,
+                Cc = this.EmailSetting.Cc
+            };
+            string emailFile = Path.Combine(FileSystem.GetSettingsFolder(), _emailFilename);
+            File.WriteAllText(emailFile, Serializer.SerializeToXml<Email>(value));
         }
     }
 }

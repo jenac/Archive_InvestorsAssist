@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvestorsAssist.WebApi", "InvestorsAssist.WebApi\InvestorsAssist.WebApi.csproj", "{BAF880A5-A4ED-45A9-9717-9DEA2BE297E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvestorsAssist.Utility", "InvestorsAssist.Utility\InvestorsAssist.Utility.csproj", "{F1AE77CA-F835-4309-BBC9-10AFC5AD5BE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvestorsAssist.Configuration", "InvestorsAssist.Configuration\InvestorsAssist.Configuration.csproj", "{71842BE3-4E6B-4413-AB52-39070D332001}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{BAF880A5-A4ED-45A9-9717-9DEA2BE297E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAF880A5-A4ED-45A9-9717-9DEA2BE297E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAF880A5-A4ED-45A9-9717-9DEA2BE297E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1AE77CA-F835-4309-BBC9-10AFC5AD5BE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1AE77CA-F835-4309-BBC9-10AFC5AD5BE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1AE77CA-F835-4309-BBC9-10AFC5AD5BE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1AE77CA-F835-4309-BBC9-10AFC5AD5BE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71842BE3-4E6B-4413-AB52-39070D332001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71842BE3-4E6B-4413-AB52-39070D332001}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71842BE3-4E6B-4413-AB52-39070D332001}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71842BE3-4E6B-4413-AB52-39070D332001}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
