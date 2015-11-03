@@ -55,7 +55,6 @@
     <Content Include="Scripts\Company.sql" />
     <Content Include="Scripts\Indicator.sql" />
     <Content Include="Scripts\_Final.sql" />
-    <Content Include="Scripts\Idb.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

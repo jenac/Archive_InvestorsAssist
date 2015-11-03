@@ -27,32 +27,10 @@ namespace InvestorsAssist.DataAccess
             _objectCtx.CommandTimeout = 300;
         }
 
-        public void SaveIbdPick(IbdPick value)
-        {
-            this.Database.ExecuteSqlCommand("EXEC Proc_IbdPick_Upsert {0}, {1}, {2}, {3}, {4}",
-                value.Symbol, value.Date, value.Ibd50Rank, value.Data, value.Following);
-        }
-
-        public DateTime? GetIbdPickLastUpdate()
-        {
-            return this._objectCtx.ExecuteStoreQuery<DateTime>("EXEC Proc_IbdPick_LastUpdate_Get").FirstOrDefault();
-        }
-
         public IEnumerable<string> GetFollowingList()
         {
             return this._objectCtx.ExecuteStoreQuery<string>("EXEC Proc_IbdPick_Following_Get");
             
-        }
-
-        public IEnumerable<DateTime> GetLast2IbdDate()
-        {
-            return this._objectCtx.ExecuteStoreQuery<DateTime>("EXEC Proc_IbdPick_Last2_Dates_Get");
-        }
-
-
-        public IEnumerable<string> GetIbd50ByDate(DateTime latest)
-        {
-            return this._objectCtx.ExecuteStoreQuery<string>("EXEC Proc_IbdPick_Ibd50_Symbol_By_Date_Get {0}", latest);
         }
 
         public IEnumerable<string> GetCompanySymbols()

@@ -32,7 +32,7 @@ namespace InvestorsAssist.Core.Trace
 
         public void DoWork()
         {
-
+            /*
             DateTime? lastTradingDate = GetLastTradingDate();
             if (lastTradingDate == null)
             {
@@ -99,7 +99,7 @@ namespace InvestorsAssist.Core.Trace
                     summary.ToHtmlPresentation());
             }
             //Load template and create/send email
-            //Logger.Instance.Info()
+            //Logger.Instance.Info()*/
         }
 
         //Get last trading date with retries
