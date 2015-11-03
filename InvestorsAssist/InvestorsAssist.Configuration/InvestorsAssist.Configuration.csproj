@@ -40,7 +40,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Objects\Email.cs" />
-    <Compile Include="Objects\Ibd.cs" />
     <Compile Include="SystemSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

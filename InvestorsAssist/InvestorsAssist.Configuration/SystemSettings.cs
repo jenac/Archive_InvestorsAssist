@@ -15,7 +15,6 @@ namespace InvestorsAssist.Configuration
     {
         private SecureString _passKey;
         public Email EmailSetting { get; private set; }
-        public Ibd IbdSetting { get; private set; }
         private static readonly Lazy<SystemSettings> lazy =
         new Lazy<SystemSettings>(() => new SystemSettings());
 
@@ -23,7 +22,7 @@ namespace InvestorsAssist.Configuration
 
         private const string _keyFilename = "InvestorAssist.key";
         private const string _emailFilename = "Email.xml";
-        private const string _ibdFilename = "Ibd.xml";
+
         private SystemSettings()
         {
             string keyFile = Path.Combine(FileSystem.GetSettingsFolder(), _keyFilename);
@@ -37,31 +36,6 @@ namespace InvestorsAssist.Configuration
                 _passKey.ToPlainString()
                 ).ToSecureString();
             this.EmailSetting.Password = string.Empty;
-
-            string ibdFile = Path.Combine(FileSystem.GetSettingsFolder(), _ibdFilename);
-            string ibdXml = File.ReadAllText(ibdFile);
-            this.IbdSetting = Serializer.DeserializeFromXml<Ibd>(ibdXml);
-            this.IbdSetting.SecurePassword = Encryption.Decrypt(
-                this.IbdSetting.Password, 
-                _passKey.ToPlainString()
-                ).ToSecureString();
-            this.IbdSetting.Password = string.Empty;
-
-        }
-
-        public void SetIbdAccount(string username, string password)
-        {
-            string keyFile = Path.Combine(FileSystem.GetSettingsFolder(), _keyFilename);
-            _passKey = File.ReadAllText(keyFile).ToSecureString();
-            Ibd value = new Ibd
-            {
-                Username = username, 
-                Password = Encryption.Encrypt(password, _passKey.ToPlainString()),
-                MaxRetries = this.IbdSetting.MaxRetries,
-                RetryInterval = this.IbdSetting.RetryInterval
-            };
-            string ibdFile = Path.Combine(FileSystem.GetSettingsFolder(), _ibdFilename);
-            File.WriteAllText(ibdFile, Serializer.SerializeToXml<Ibd>(value));
         }
 
         public void SetEmailAccount(string username, string password)

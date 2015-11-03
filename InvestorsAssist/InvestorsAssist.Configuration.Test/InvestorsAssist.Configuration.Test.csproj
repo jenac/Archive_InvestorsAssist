@@ -52,7 +52,6 @@
   <ItemGroup>
     <Compile Include="EmailSettingFileTool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IbdSettingFileTool.cs" />
     <Compile Include="SystemSettingsTest.cs" />
   </ItemGroup>
   <ItemGroup>
