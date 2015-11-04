@@ -37,7 +37,7 @@ namespace InvestorsAssist._TechnicalAnalysis
                 Logger.Instance.Info(ex.StackTrace);
                 ExceptionHandler.AlertViaEmail("InvestorsAssist._TechnicalAnalysis", ex);
             }
-            Logger.Instance.Info("InvestorsAssist._UpdateEod done.");
+            Logger.Instance.Info("InvestorsAssist._TechnicalAnalysis done.");
         }
     }
 }
