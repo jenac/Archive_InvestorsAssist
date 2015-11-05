@@ -86,5 +86,10 @@ ROWTERMINATOR = '\n'
             this.Database.ExecuteSqlCommand("EXEC Proc_Indicator_Upsert {0}, {1}, {2}, {3}", 
                 value.Symbol, value.Name, value.Date, value.Data);
         }
+
+        public IEnumerable<Watchlist> GetActiveWatchlist()
+        {
+            return this._objectCtx.ExecuteStoreQuery<Watchlist>("EXEC Proc_Watchlist_GetActive");
+        }
     }
 }

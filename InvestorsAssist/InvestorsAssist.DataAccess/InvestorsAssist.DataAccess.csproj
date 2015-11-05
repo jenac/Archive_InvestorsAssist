@@ -54,6 +54,7 @@
     <Content Include="Scripts\Eod.sql" />
     <Content Include="Scripts\Company.sql" />
     <Content Include="Scripts\Indicator.sql" />
+    <Content Include="Scripts\Watchlist.sql" />
     <Content Include="Scripts\_Final.sql" />
   </ItemGroup>
   <ItemGroup>

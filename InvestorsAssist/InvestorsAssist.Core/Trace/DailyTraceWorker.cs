@@ -5,6 +5,7 @@ using InvestorsAssist.Configuration;
 using InvestorsAssist.Core.Interface;
 using InvestorsAssist.Core.Schema;
 using InvestorsAssist.DataAccess;
+using InvestorsAssist.Entities;
 using InvestorsAssist.Utility.Internet;
 using InvestorsAssist.Utility.IO;
 using InvestorsAssist.Utility.Security;
@@ -32,7 +33,6 @@ namespace InvestorsAssist.Core.Trace
 
         public void DoWork()
         {
-            /*
             DateTime? lastTradingDate = GetLastTradingDate();
             if (lastTradingDate == null)
             {
@@ -46,60 +46,41 @@ namespace InvestorsAssist.Core.Trace
             //    return;
             //}
 
-            //get ibd50 last
-            // get ibd50 late prev list
-            //
-            DailySummary summary = new DailySummary(lastTradingDate.Value);
-            List<DateTime> dates = _context.GetLast2IbdDate().ToList();
-
-            if (dates.Count != 2)
+            List<Watchlist> watchlist = _context.GetActiveWatchlist().ToList();
+            foreach (Watchlist wl in watchlist)
             {
-                Logger.Instance.Error("No history for daily summary yet. Need at least 2 days of history");
-                return;
-            }
-            DateTime latest = dates[0];
-            DateTime previous = dates[1];
-            List<string> latestList = _context.GetIbd50ByDate(latest).ToList();
-            List<string> previousList = _context.GetIbd50ByDate(previous).ToList();
-            summary.LatestIdb50 = latestList;
-            summary.NewInIdb50 = latestList.Except(previousList).ToList();
-            summary.JustOutIdb50 = previousList.Except(latestList).ToList();
-
-            List<string> following = _context.GetFollowingList().ToList();
-            summary.StillFollowing = following.Except(latestList).ToList();
-
-            //process following list:
-            List<TraceSummuary> detailedSummaries = new List<TraceSummuary>();
-            foreach (var symbol in following)
-            {
-                var prices = GetPriceData(symbol);
-                if (prices.Count == 0)
+                DailySummary summary = new DailySummary(lastTradingDate.Value);
+                List<TraceSummuary> detailedSummaries = new List<TraceSummuary>();
+                List<string> following = wl.CSV.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                foreach (var symbol in following)
                 {
-                    Logger.Instance.ErrorFormat("Cannot get prices for {0}", symbol);
-                    continue;
+                    var prices = GetPriceData(symbol);
+                    if (prices.Count == 0)
+                    {
+                        Logger.Instance.ErrorFormat("Cannot get prices for {0}", symbol);
+                        continue;
+                    }
+                    else if (prices.Count < 50)
+                    {
+                        Logger.Instance.ErrorFormat("History is too short for {0}", symbol);
+                        continue;
+                    }
+                    detailedSummaries.Add(Analyse(symbol, prices));
                 }
-                else if (prices.Count < 50)
-                {
-                    Logger.Instance.ErrorFormat("History is too short for {0}", symbol);
-                    continue;
-                }
-                detailedSummaries.Add(Analyse(symbol, prices));
-            }
-            summary.DetailedSummaries = detailedSummaries;
+                summary.DetailedSummaries = detailedSummaries;
 
-            using (var email = new EmailClient(
-                SystemSettings.Instance.EmailSetting.Server,
-                SystemSettings.Instance.EmailSetting.Port,
-                SystemSettings.Instance.EmailSetting.Username,
-                SystemSettings.Instance.EmailSetting.SecurePassword.ToPlainString()))
-            {
-                email.SendHtmlEmail(SystemSettings.Instance.EmailSetting.To,
-                    SystemSettings.Instance.EmailSetting.Cc,
-                    "IA: Daily Summary",
-                    summary.ToHtmlPresentation());
+                using (var email = new EmailClient(
+                    SystemSettings.Instance.EmailSetting.Server,
+                    SystemSettings.Instance.EmailSetting.Port,
+                    SystemSettings.Instance.EmailSetting.Username,
+                    SystemSettings.Instance.EmailSetting.SecurePassword.ToPlainString()))
+                {
+                    email.SendHtmlEmail(SystemSettings.Instance.EmailSetting.To,
+                        SystemSettings.Instance.EmailSetting.Cc,
+                        string.Format("IA: Daily Summary - {0}", wl.Name),
+                        summary.ToHtmlPresentation());
+                }
             }
-            //Load template and create/send email
-            //Logger.Instance.Info()*/
         }
 
         //Get last trading date with retries

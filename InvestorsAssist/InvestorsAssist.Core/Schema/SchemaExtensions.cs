@@ -19,22 +19,6 @@ namespace InvestorsAssist.Core.Schema
             sb.AppendLine(@"</head>");
             sb.AppendLine(@"<body>");
             sb.AppendFormat(@"<h1>Summary on {0}</h1>", summary.TradingDate.ToString("yyyy-MM-dd"));
-            if (summary.LatestIdb50.Count > 0)
-                sb.AppendFormat(@"<h3>IBD 50: {0}</h3>",
-                    string.Join(", ", summary.LatestIdb50.ToArray()));
-
-            if (summary.NewInIdb50.Count > 0)
-                sb.AppendFormat(@"<h3>New in IBD 50: {0}</h3>",
-                    string.Join(", ", summary.NewInIdb50.ToArray()));
-
-            if (summary.JustOutIdb50.Count > 0)
-                sb.AppendFormat(@"<h3>Just fall out IBD 50: {0}</h3>",
-                    string.Join(", ", summary.JustOutIdb50.ToArray()));
-
-            if (summary.StillFollowing.Count > 0)
-                sb.AppendFormat(@"<h3>Still following list: {0}</h3>",
-                    string.Join(", ", summary.StillFollowing.ToArray()));
-
             sb.AppendLine(@"<hr/>");
             sb.AppendLine("<ul>");
             foreach (var detail in summary.DetailedSummaries)

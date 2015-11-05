@@ -9,17 +9,11 @@ namespace InvestorsAssist.Core.Schema
     public class DailySummary
     {
         public DateTime TradingDate { get; private set; }
-        public List<string> LatestIdb50 { get; set; }
-        public List<string> NewInIdb50 { get; set; }
-        public List<string> JustOutIdb50 { get; set; }
-
-        public List<string> StillFollowing { get; set; }
-
         public List<TraceSummuary> DetailedSummaries { get; set; }
-
         public DailySummary(DateTime tradingDate)
         {
             this.TradingDate = tradingDate;
+            
         }
     }
 }
